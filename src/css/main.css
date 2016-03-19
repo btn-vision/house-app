@@ -1,0 +1,19 @@
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+.article-content{  
+  margin-top: 20px;
+}
+
+.panel-default,
+.panel-body,
+.panel-heading{
+  border-radius: 0;
+}
+.title-panel{
+  text-align: center;
+  font-size: 2.5em;
+}
+
+

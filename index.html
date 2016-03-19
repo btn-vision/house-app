@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <title>Housing App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.1/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.1/angular-route.js"></script>
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    
+    <link href="src/css/main.css" rel="stylesheet" type="text/css">
+  </head>
+  <body ng-app="vision">
+    <div class="container article-content">
+      <div ng-view></div>
+    </div>
+  </body>
+  <script src="src/app.module.js"></script>
+  <script src="src/main.controller.js"></script>
+  <script src="src/route-config.js"></script>
+</html>
+
