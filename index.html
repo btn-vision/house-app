@@ -20,4 +20,61 @@
   <script src="src/app.module.js"></script>
   <script src="src/main.controller.js"></script>
   <script src="src/route-config.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://d3js.org/topojson.v1.min.js"></script>
+  <script src="http://rawgithub.com/markmarkoh/datamaps/master/dist/datamaps.none.min.js"></script>
+  <script>
+  setTimeout(function() {
+    var map = new Datamap({
+      element: document.getElementById('subunits'),
+      geographyConfig: {
+        dataUrl: '/customlondon.topo.json'
+      },
+      scope: 'subunits',
+      fills: {
+        defaultFill: '#bada55',
+        someKey: '#fa0fa0'
+      },
+      setProjection: function(element) {
+        var projection = d3.geo.mercator()
+          .center([0, 51.4])
+          .scale(30000)
+          .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
+
+         var path = d3.geo.path().projection(projection);
+         return {path: path, projection: projection};
+      },
+      done: function(datamap) {
+        var that = this;
+        datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
+          toggleInLocalstorage(geography);
+          //that.data[geography.id.toString()] = {fillKey: 'someKey'};
+          //console.log(that.data);
+          var n = {};
+          datamap.updateChoropleth(n);
+          n[geography.id] = {fillKey: 'someKey'};
+          datamap.updateChoropleth(n);
+          console.log(n);
+          datamap.updateChoropleth(n);
+
+          console.log(datamap);
+
+        });
+      }
+    });
+
+    var selected = [];
+    var toggleInLocalstorage = function(geography) {
+      var index = selected.indexOf(geography);
+      if(index === -1) {
+        selected.push(geography);
+      } else {
+       selected.splice(index, 1);
+      }
+      console.log(selected);
+      window.localStorage.setItem('selectedGeographies', JSON.stringify(selected));
+    }
+  }, 3000); 
+    
+</script>
 </html>
