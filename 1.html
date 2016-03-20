@@ -16,10 +16,6 @@
       defaultFill: '#bada55',
       someKey: '#fa0fa0'
     },
-    data: {
-      //'0': {fillKey: 'someKey'},
-      //'5': {fillKey: 'someKey'}
-    },
     setProjection: function(element) {
       var projection = d3.geo.mercator()
         .center([0, 51.4])
@@ -30,23 +26,35 @@
        return {path: path, projection: projection};
     },
     done: function(datamap) {
+      var that = this;
       datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
-        toggleInLocalstorage(geography);
+      //toggleInLocalstorage(geography);
+        //that.data[geography.id.toString()] = {fillKey: 'someKey'};
+        //console.log(that.data);
+        var n = {};
+        datamap.updateChoropleth(n);
+        n[geography.id] = {fillKey: 'someKey'};
+        datamap.updateChoropleth(n);
+        console.log(n);
+        datamap.updateChoropleth(n);
+
+        console.log(datamap);
+
       });
     }
   });
 
-  var selected = [];
-  var toggleInLocalstorage = function(geography) {
-    var index = selected.indexOf(geography);
-    if(index === -1) {
-      selected.push(geography);
-    } else {
-      selected.splice(index, 1);
-    }
-    console.log(selected);
-    window.localStorage.setItem('selectedGeographies', JSON.stringify(selected));
-  }
+//  var selected = [];
+//  var toggleInLocalstorage = function(geography) {
+//    var index = selected.indexOf(geography);
+//    if(index === -1) {
+//      selected.push(geography);
+//    } else {
+//     selected.splice(index, 1);
+//    }
+//    console.log(selected);
+//    window.localStorage.setItem('selectedGeographies', JSON.stringify(selected));
+//  }
 </script>
 </body>
 </html>
