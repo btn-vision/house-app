@@ -4,32 +4,49 @@
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
 <script src="http://rawgithub.com/markmarkoh/datamaps/master/dist/datamaps.none.min.js"></script>
-<div id="borough" style="height: 500px; width: 900px;"></div>
+<div id="subunits" style="height: 1000px; width: 1000px;"></div>
 <script>
   var map = new Datamap({
-    element: document.getElementById('borough'),
+    element: document.getElementById('subunits'),
     geographyConfig: {
-      dataUrl: 'https://gist.githubusercontent.com/theobarberbany/9c4e81f647c536d79f5b/raw/8a529b4b04729220f7cf87b0fbc783b7faeb80b0/lond.json'
+      dataUrl: 'customlondon.topo.json'
     },
-    scope: 'borough',
+    scope: 'subunits',
     fills: {
       defaultFill: '#bada55',
       someKey: '#fa0fa0'
     },
     data: {
-      'Hounslow': {fillKey: 'someKey'},
-      'Ealing': {fillKey: 'someKey'}
+      //'0': {fillKey: 'someKey'},
+      //'5': {fillKey: 'someKey'}
     },
     setProjection: function(element) {
       var projection = d3.geo.mercator()
-        .center([51.604372, -0.075874])
-        .scale(2200)
+        .center([0, 51.4])
+        .scale(50000)
         .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
 
        var path = d3.geo.path().projection(projection);
        return {path: path, projection: projection};
+    },
+    done: function(datamap) {
+      datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
+        toggleInLocalstorage(geography);
+      });
     }
   });
+
+  var selected = [];
+  var toggleInLocalstorage = function(geography) {
+    var index = selected.indexOf(geography);
+    if(index === -1) {
+      selected.push(geography);
+    } else {
+      selected.splice(index, 1);
+    }
+    console.log(selected);
+    window.localStorage.setItem('selectedGeographies', JSON.stringify(selected));
+  }
 </script>
 </body>
 </html>
