@@ -4,26 +4,26 @@
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
 <script src="http://rawgithub.com/markmarkoh/datamaps/master/dist/datamaps.none.min.js"></script>
-<div id="borough" style="height: 500px; width: 900px;"></div>
+<div id="subunits" style="height: 1000px; width: 1000px;"></div>
 <script>
   var map = new Datamap({
-    element: document.getElementById('borough'),
+    element: document.getElementById('subunits'),
     geographyConfig: {
-      dataUrl: 'https://gist.githubusercontent.com/theobarberbany/3da4ad6fc1a846b4a425/raw/9ba35c2d547e665e63c9d274624c4f6cab87c6b4/123.topojson'
+      dataUrl: 'customlondon.topo.json'
     },
-    scope: 'borough',
+    scope: 'subunits',
     fills: {
       defaultFill: '#bada55',
       someKey: '#fa0fa0'
     },
     data: {
-      'Hounslow': {fillKey: 'someKey'},
-      'Ealing': {fillKey: 'someKey'}
+      '11': {fillKey: 'someKey'},
+      '5': {fillKey: 'someKey'}
     },
     setProjection: function(element) {
       var projection = d3.geo.mercator()
-        .center([51.604372, -0.075874])
-        .scale(2200)
+        .center([0, 51.4])
+        .scale(50000)
         .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
 
        var path = d3.geo.path().projection(projection);
