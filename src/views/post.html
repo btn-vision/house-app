@@ -25,13 +25,13 @@
                         <div class="col-sm-4">
                           <div class="form-group">
                             <label for="salary">Take home monthly pay</label>
-                            <input type="text" id="salary" class="form-control"></input>
+                            <input type="text" id="salary" class="form-control" ng-model="main.takeHomePay"></input>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-group">
                             <label for="house-type">Housing Type</label>
-                            <select class="form-control">
+                            <select class="form-control" ng-model="main.housingType">
                               <option>Shared accomodation</option>
                               <option>1 bed flat</option>
                               <option>2 bed flat</option>
