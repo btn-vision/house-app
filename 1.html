@@ -17,8 +17,8 @@
       someKey: '#fa0fa0'
     },
     data: {
-      '11': {fillKey: 'someKey'},
-      '5': {fillKey: 'someKey'}
+      //'0': {fillKey: 'someKey'},
+      //'5': {fillKey: 'someKey'}
     },
     setProjection: function(element) {
       var projection = d3.geo.mercator()
@@ -28,8 +28,25 @@
 
        var path = d3.geo.path().projection(projection);
        return {path: path, projection: projection};
+    },
+    done: function(datamap) {
+      datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
+        toggleInLocalstorage(geography);
+      });
     }
   });
+
+  var selected = [];
+  var toggleInLocalstorage = function(geography) {
+    var index = selected.indexOf(geography);
+    if(index === -1) {
+      selected.push(geography);
+    } else {
+      selected.splice(index, 1);
+    }
+    console.log(selected);
+    window.localStorage.setItem('selectedGeographies', JSON.stringify(selected));
+  }
 </script>
 </body>
 </html>
