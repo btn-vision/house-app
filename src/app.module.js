@@ -2,7 +2,8 @@
 
   angular
     .module('vision', [
-      'ngRoute'
+      'ngRoute',
+      'ngAnimate'
     ]);
 
 })();
