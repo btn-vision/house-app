@@ -28,7 +28,11 @@
     done: function(datamap) {
       var that = this;
       datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
+<<<<<<< HEAD
       //toggleInLocalstorage(geography);
+=======
+        toggleInLocalstorage(geography);
+>>>>>>> master
         //that.data[geography.id.toString()] = {fillKey: 'someKey'};
         //console.log(that.data);
         var n = {};
@@ -44,6 +48,7 @@
     }
   });
 
+<<<<<<< HEAD
 //  var selected = [];
 //  var toggleInLocalstorage = function(geography) {
 //    var index = selected.indexOf(geography);
@@ -55,6 +60,19 @@
 //    console.log(selected);
 //    window.localStorage.setItem('selectedGeographies', JSON.stringify(selected));
 //  }
+=======
+  var selected = [];
+  var toggleInLocalstorage = function(geography) {
+    var index = selected.indexOf(geography);
+    if(index === -1) {
+      selected.push(geography);
+    } else {
+     selected.splice(index, 1);
+    }
+    console.log(selected);
+    window.localStorage.setItem('selectedGeographies', JSON.stringify(selected));
+  }
+>>>>>>> master
 </script>
 </body>
 </html>
